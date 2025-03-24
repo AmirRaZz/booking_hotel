@@ -15,7 +15,14 @@ function LocationList() {
             return (
               <div className="locationItem" key={item.id}>
                 <div className="imageWrapper">
-                  <img src={item.picture_url.url} alt={item.name} />
+                  <img
+                    src={item.picture_url.url}
+                    alt={item.name}
+                    onError={(e) => {
+                      e.currentTarget.src =
+                        "https://placehold.co/600x400?text=Image+Not+Available";
+                    }}
+                  />
                 </div>
                 <div className="locationItemDesc">
                   <p className="location">{item.smart_location}</p>

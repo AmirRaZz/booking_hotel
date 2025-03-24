@@ -141,6 +141,7 @@
   position: relative;
   border-radius: 5px;
   background-color: #f0f0f0; /* Placeholder color while loading */
+  overflow: hidden;
 }
 
 .imageWrapper img {
@@ -231,31 +232,62 @@
   height: 100%;
 }
 
+/* Hotel list styles */
 .searchList {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 20px;
 }
 
-.searchList .searchItem {
+.hotel-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.searchItem {
   display: flex;
-  gap: 1rem;
+  gap: 20px;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s, transform 0.3s;
 }
-.searchList .searchItem img {
-  width: 6rem;
-  height: 6rem;
+
+.searchItem:hover {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.searchItem img {
+  width: 200px;
+  height: 150px;
   object-fit: cover;
-  border-radius: 1rem;
+  border-radius: 5px;
+  background-color: #f0f0f0;
 }
+
+.searchItem .searchItemDesc {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
 .searchItem .searchItemDesc p {
   margin-bottom: 0.3rem;
 }
+
 .searchItem .searchItemDesc .name {
   color: var(--text-400);
 }
+
 .searchItem .searchItemDesc .location {
   font-weight: 500;
 }
+
 .searchItem .searchItemDesc .price {
   font-weight: 500;
   display: flex;
@@ -265,6 +297,29 @@
 .searchItem .searchItemDesc .price span {
   color: var(--text-400);
   font-weight: 400;
+}
+
+/* Hotel skeleton styles */
+.hotelSkeletonContainer .locationItem {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  gap: 20px;
+}
+
+.hotelSkeletonContainer .imageWrapper {
+  width: 200px;
+  height: 150px;
+  padding-top: 0;
+}
+
+.hotelSkeletonContainer .locationItemDesc {
+  flex: 1;
 }
 
 /* app layout */
@@ -398,6 +453,7 @@ a.active {
 .skeleton {
   background-color: #e0e0e0;
   overflow: hidden;
+  position: relative;
 }
 
 .skeleton-image {
@@ -414,6 +470,7 @@ a.active {
 
 .skeleton-text {
   height: 16px;
+  margin-bottom: 8px;
   background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
@@ -430,6 +487,12 @@ a.active {
 
 .skeleton-text:nth-child(3) {
   width: 40%;
+  margin-top: auto;
+}
+
+.skeleton-item {
+  pointer-events: none;
+  cursor: default;
 }
 
 @keyframes shimmer {

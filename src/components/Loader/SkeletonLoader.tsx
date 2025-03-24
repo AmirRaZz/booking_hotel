@@ -1,9 +1,8 @@
-function Loader() {
+function SkeletonLoader({ count = 6 }:{count?:number}) {
   return (
     <>
-      {
-      // Skeleton loading placeholders
-      [...Array(6)].map((_, index) => (
+      {/* Skeleton loading placeholders */}
+      {[...Array(count)].map((_, index) => (
         <div className="locationItem" key={index}>
           <div className="imageWrapper skeleton">
             <div className="skeleton-image"></div>
@@ -19,4 +18,4 @@ function Loader() {
   );
 }
 
-export default Loader;
+export default SkeletonLoader;
