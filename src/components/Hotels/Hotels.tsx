@@ -3,7 +3,7 @@ import SkeletonLoader from "../Loader/SkeletonLoader";
 import { useHotels } from "@/context/HotelProvider";
 
 function Hotels() {
-  const { hotels, isLoading } = useHotels();
+  const { hotels, isLoading, currentHotel } = useHotels();
 
   if (isLoading) {
     return (
@@ -26,7 +26,11 @@ function Hotels() {
             key={item.id}
             className="hotel-link"
           >
-            <div className="searchItem">
+            <div
+              className={`searchItem ${
+                item.id === currentHotel?.id ? "current-hotel" : ""
+              }`}
+            >
               <img
                 src={item.picture_url.url}
                 alt={item.name}

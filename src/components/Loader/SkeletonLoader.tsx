@@ -1,4 +1,4 @@
-function SkeletonLoader({ count = 6 }:{count?:number}) {
+function SkeletonLoader({ count = 6 }: { count?: number }) {
   return (
     <>
       {/* Skeleton loading placeholders */}
