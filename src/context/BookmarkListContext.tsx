@@ -1,15 +1,14 @@
-import useFetch from "@/hooks/useFetch";
 import { BookmarkType } from "@/types/book";
 import axios from "axios";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 type BookmarkContextType = {
   bookmarks: BookmarkType[];
   isLoading: boolean;
   getBookmark: (id: string | undefined) => void;
+  createBookmark: (newBookmark: BookmarkType) => Promise<BookmarkType>;
   currentBookmark: BookmarkType | null;
-  isLoadingCurrentBookmark: boolean;
 };
 
 const BookmarkContext = createContext({} as BookmarkContextType);
@@ -19,14 +18,32 @@ function BookmarkListProvider({ children }: { children: React.ReactNode }) {
   const [currentBookmark, setCurrentBookmark] = useState<BookmarkType | null>(
     null
   );
-  const [isLoadingCurrentBookmark, setIsLoadingCurrentBookmark] =
-    useState(false);
-  const { isLoading, data: bookmarks } = useFetch(`${BASE_URL}/bookmarks`, "");
+  const [bookmarks, setBookmarks] = useState<BookmarkType[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    async function fetchBookmarkList() {
+      setIsLoading(true);
+      try {
+        const { data } = await axios.get(`${BASE_URL}/bookmarks`);
+        setBookmarks(data);
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          toast.error(error.message);
+        } else {
+          toast.error("Something went wrong!");
+        }
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchBookmarkList();
+  }, []);
 
   async function getBookmark(id: string | undefined) {
     if (!id) return;
 
-    setIsLoadingCurrentBookmark(true);
+    setIsLoading(true);
     setCurrentBookmark(null);
     try {
       const { data } = await axios.get(`${BASE_URL}/bookmarks/${id}`);
@@ -38,7 +55,26 @@ function BookmarkListProvider({ children }: { children: React.ReactNode }) {
         toast.error("Something went wrong!");
       }
     } finally {
-      setIsLoadingCurrentBookmark(false);
+      setIsLoading(false);
+    }
+  }
+
+  async function createBookmark(newBookmark: BookmarkType) {
+    setIsLoading(true);
+    try {
+      const { data } = await axios.post(`${BASE_URL}/bookmarks`, newBookmark);
+      toast.success("Bookmark created successfully!");
+      setCurrentBookmark(data);
+      setBookmarks((prev) => [...prev, data]);
+      return data;
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        toast.error(error.message);
+      } else {
+        toast.error("Something went wrong!");
+      }
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -49,7 +85,7 @@ function BookmarkListProvider({ children }: { children: React.ReactNode }) {
         isLoading,
         getBookmark,
         currentBookmark,
-        isLoadingCurrentBookmark,
+        createBookmark,
       }}
     >
       {children}

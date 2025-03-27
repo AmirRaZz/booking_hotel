@@ -1,5 +1,5 @@
 export type BookmarkType = {
-  id: number;
+  id?: number;
   cityName: string;
   country: string;
   countryCode: string;
