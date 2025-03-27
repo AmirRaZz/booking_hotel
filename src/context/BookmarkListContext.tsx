@@ -1,14 +1,14 @@
 import useFetch from "@/hooks/useFetch";
-import { HotelType } from "@/types/hotel";
+import { BookmarkType } from "@/types/book";
 import axios from "axios";
 import { createContext, useContext, useState } from "react";
 import toast from "react-hot-toast";
 
 type BookmarkContextType = {
-  bookmarks: HotelType[];
+  bookmarks: BookmarkType[];
   isLoading: boolean;
   getBookmark: (id: string | undefined) => void;
-  currentBookmark: HotelType | null;
+  currentBookmark: BookmarkType | null;
   isLoadingCurrentBookmark: boolean;
 };
 
@@ -16,14 +16,18 @@ const BookmarkContext = createContext({} as BookmarkContextType);
 const BASE_URL = "http://localhost:5000";
 
 function BookmarkListProvider({ children }: { children: React.ReactNode }) {
-  const [currentBookmark, setCurrentBookmark] = useState<HotelType | null>(null);
-  const [isLoadingCurrentBookmark, setIsLoadingCurrentBookmark] = useState(false);
+  const [currentBookmark, setCurrentBookmark] = useState<BookmarkType | null>(
+    null
+  );
+  const [isLoadingCurrentBookmark, setIsLoadingCurrentBookmark] =
+    useState(false);
   const { isLoading, data: bookmarks } = useFetch(`${BASE_URL}/bookmarks`, "");
 
   async function getBookmark(id: string | undefined) {
     if (!id) return;
 
     setIsLoadingCurrentBookmark(true);
+    setCurrentBookmark(null);
     try {
       const { data } = await axios.get(`${BASE_URL}/bookmarks/${id}`);
       setCurrentBookmark(data);

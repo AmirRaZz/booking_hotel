@@ -8,17 +8,16 @@ import {
   useMapEvent,
 } from "react-leaflet";
 import L from "leaflet";
-import { useNavigate, useSearchParams } from "react-router";
+import { useNavigate } from "react-router";
 import useGeoLocation from "@/hooks/useGeoLocation";
 import { HotelType } from "@/types/hotel";
+import useUrlLocation from "@/hooks/useUrlLocation";
 
 function Map({ markerLocations }: { markerLocations: HotelType[] }) {
   const [mapCenter, setMapCenter] = useState<L.LatLngExpression>([
     51.505, -0.09,
   ]);
-  const [searchParams] = useSearchParams();
-  const lat = Number(searchParams.get("lat"));
-  const lng = Number(searchParams.get("lng"));
+  const [lat, lng] = useUrlLocation();
 
   const {
     isLoading,

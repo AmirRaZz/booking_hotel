@@ -1,17 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { HotelType } from "@/types/hotel";
 
 export default function useFetch(url: string, query: string) {
-  const [data, setData] = useState<HotelType[]>([]);
+  const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
       try {
         setIsLoading(true);
-        const { data } = await axios.get<HotelType[]>(`${url}?${query}`);
+        const { data } = await axios.get(`${url}?${query}`);
         setData(data);
       } catch (err: unknown) {
         setData([]);
