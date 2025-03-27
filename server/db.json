@@ -1325,51 +1325,6 @@
   ],
   "bookmarks": [
     {
-      "cityName": "Abalessa",
-      "country": "Algeria",
-      "countryCode": "DZ",
-      "latitude": "23.18455079512732",
-      "longitude": "3.795523257510883",
-      "host_location": "Abalessa Algeria",
-      "id": "1"
-    },
-    {
-      "cityName": "Mahidasht",
-      "country": "Iran (Islamic Republic of)",
-      "countryCode": "IR",
-      "latitude": "34.32869425037187",
-      "longitude": "46.724183117022086",
-      "host_location": "Mahidasht Iran (Islamic Republic of)",
-      "id": "4"
-    },
-    {
-      "cityName": "Sanandaj",
-      "country": "Iran (Islamic Republic of)",
-      "countryCode": "IR",
-      "latitude": "35.31372444726279",
-      "longitude": "47.03114358752335",
-      "host_location": "Sanandaj Iran (Islamic Republic of)",
-      "id": "5"
-    },
-    {
-      "cityName": "A Dakhla Oasis",
-      "country": "Egypt",
-      "countryCode": "EG",
-      "latitude": "25.02090651422749",
-      "longitude": "29.09059588509316",
-      "host_location": "A Dakhla Oasis Egypt",
-      "id": "7"
-    },
-    {
-      "cityName": "Baba Kot",
-      "country": "Pakistan",
-      "countryCode": "PK",
-      "latitude": "28.43528783183169",
-      "longitude": "67.78003711374224",
-      "host_location": "Baba Kot Pakistan",
-      "id": "8"
-    },
-    {
       "id": "f399",
       "cityName": "Borazjan",
       "country": "Iran (Islamic Republic of)",
@@ -1379,13 +1334,76 @@
       "host_location": "Borazjan Iran (Islamic Republic of)"
     },
     {
-      "id": "1a2f",
-      "cityName": "Sa‘dabad",
-      "country": "Iran (Islamic Republic of)",
-      "countryCode": "IR",
-      "latitude": "29.384099142873573",
-      "longitude": "51.1070466041565",
-      "host_location": "Sa‘dabad Iran (Islamic Republic of)"
+      "id": "5b40",
+      "cityName": "Zvanovice",
+      "country": "Czechia",
+      "countryCode": "CZ",
+      "latitude": "49.95042886468357",
+      "longitude": "14.765625000000002",
+      "host_location": "Zvanovice Czechia"
+    },
+    {
+      "id": "0bef",
+      "cityName": "Albertirsa",
+      "country": "Hungary",
+      "countryCode": "HU",
+      "latitude": "47.219220331629394",
+      "longitude": "19.62158203125",
+      "host_location": "Albertirsa Hungary"
+    },
+    {
+      "id": "c0c9",
+      "cityName": "Straseni",
+      "country": "Moldova (the Republic of)",
+      "countryCode": "MD",
+      "latitude": "47.234479922537275",
+      "longitude": "28.608398437500004",
+      "host_location": "Straseni Moldova (the Republic of)"
+    },
+    {
+      "id": "47ba",
+      "cityName": "Boryspil",
+      "country": "Ukraine",
+      "countryCode": "UA",
+      "latitude": "50.246877456359286",
+      "longitude": "30.805664062500004",
+      "host_location": "Boryspil Ukraine"
+    },
+    {
+      "id": "6668",
+      "cityName": "Zhukovsky",
+      "country": "Russian Federation (the)",
+      "countryCode": "RU",
+      "latitude": "55.56259429958106",
+      "longitude": "38.12255859375001",
+      "host_location": "Zhukovsky Russian Federation (the)"
+    },
+    {
+      "id": "496e",
+      "cityName": "Sang-e Takht",
+      "country": "Afghanistan",
+      "countryCode": "AF",
+      "latitude": "34.15961401431129",
+      "longitude": "66.00585937500001",
+      "host_location": "Sang-e Takht Afghanistan"
+    },
+    {
+      "id": "35e4",
+      "cityName": "Dera Ghazi Khan",
+      "country": "Pakistan",
+      "countryCode": "PK",
+      "latitude": "29.881675435721952",
+      "longitude": "70.44433593750001",
+      "host_location": "Dera Ghazi Khan Pakistan"
+    },
+    {
+      "id": "b355",
+      "cityName": "Dadri",
+      "country": "India",
+      "countryCode": "IN",
+      "latitude": "28.575748865196378",
+      "longitude": "77.51953125000001",
+      "host_location": "Dadri India"
     }
   ]
 }

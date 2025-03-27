@@ -9,6 +9,7 @@ type BookmarkContextType = {
   getBookmark: (id: string | undefined) => void;
   createBookmark: (newBookmark: BookmarkType) => Promise<BookmarkType>;
   currentBookmark: BookmarkType | null;
+  deleteBookmark: (id: number) => void;
 };
 
 const BookmarkContext = createContext({} as BookmarkContextType);
@@ -78,6 +79,23 @@ function BookmarkListProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
+  async function deleteBookmark(id: number) {
+    setIsLoading(true);
+    try {
+      await axios.delete(`${BASE_URL}/bookmarks/${id}`);
+      toast.success("Bookmark deleted successfully!");
+      setBookmarks((prev) => prev.filter((bookmark) => bookmark.id !== id));
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        toast.error(error.message);
+      } else {
+        toast.error("Something went wrong!");
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   return (
     <BookmarkContext.Provider
       value={{
@@ -86,6 +104,7 @@ function BookmarkListProvider({ children }: { children: React.ReactNode }) {
         getBookmark,
         currentBookmark,
         createBookmark,
+        deleteBookmark,
       }}
     >
       {children}
