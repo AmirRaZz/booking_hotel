@@ -1,12 +1,24 @@
 import { useRef, useState } from "react";
-import { HiCalendar, HiMinus, HiPlus, HiSearch } from "react-icons/hi";
+import {
+  HiCalendar,
+  HiLogout,
+  HiMinus,
+  HiPlus,
+  HiSearch,
+} from "react-icons/hi";
 import { MdLocationOn } from "react-icons/md";
 import useOutSideClick from "../../hooks/useOutSideClick";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRange } from "react-date-range";
 import { format } from "date-fns";
-import { createSearchParams, useNavigate, useSearchParams } from "react-router";
+import {
+  createSearchParams,
+  NavLink,
+  useNavigate,
+  useSearchParams,
+} from "react-router";
+import { useAuth } from "@/context/AuthProvider";
 const optionsType = [
   {
     id: 1,
@@ -32,7 +44,7 @@ const optionsType = [
 ];
 
 function Header() {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [destination, setDestination] = useState(
     searchParams.get("destination") || ""
   );
@@ -76,6 +88,7 @@ function Header() {
 
   return (
     <div className="header">
+      <NavLink to="/bookmark">Bookmarks</NavLink>
       <div className="headerSearch">
         <div className="headerSearchItem">
           <MdLocationOn className="headerIcon locationIcon" />
@@ -140,6 +153,7 @@ function Header() {
           </button>
         </div>
       </div>
+      <User />
     </div>
   );
 }
@@ -194,3 +208,28 @@ const GuestOptionList = ({
     </div>
   );
 };
+
+function User() {
+  const { user, logout, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
+  
+  return (
+    <div>
+      {isAuthenticated ? (
+        <div>
+          <span>{user?.name}</span>
+          <br />
+          <button onClick={handleLogout}>
+            Logout <HiLogout />
+          </button>
+        </div>
+      ) : (
+        <NavLink to="/login">Login</NavLink>
+      )}
+    </div>
+  );
+}
