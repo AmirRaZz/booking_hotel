@@ -1,9 +1,8 @@
-import useFetch from "@/hooks/useFetch";
 import SkeletonLoader from "@/components/Loader/SkeletonLoader";
+import { useHotels } from "@/context/HotelProvider";
 
 function LocationList() {
-  const { data, isLoading } = useFetch("http://localhost:5000/hotels", "");
-
+  const { hotels,isLoading } = useHotels();
   return (
     <div className="nearbyLocation">
       <h2>Nearby Locations</h2>
@@ -11,7 +10,7 @@ function LocationList() {
         {isLoading ? (
           <SkeletonLoader />
         ) : (
-          data.map((item) => {
+          hotels.map((item) => {
             return (
               <div className="locationItem" key={item.id}>
                 <div className="imageWrapper">
