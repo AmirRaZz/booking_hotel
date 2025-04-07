@@ -11,9 +11,10 @@ import L from "leaflet";
 import { useNavigate } from "react-router";
 import useGeoLocation from "@/hooks/useGeoLocation";
 import { HotelType } from "@/types/hotel";
+import { BookmarkType } from "@/types/book";
 import useUrlLocation from "@/hooks/useUrlLocation";
 
-function Map({ markerLocations }: { markerLocations: HotelType[] }) {
+function Map({ markerLocations }: { markerLocations: HotelType[] | BookmarkType[] }) {
   const [mapCenter, setMapCenter] = useState<L.LatLngExpression>([
     51.505, -0.09,
   ]);

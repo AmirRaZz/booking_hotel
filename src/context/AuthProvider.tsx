@@ -34,9 +34,9 @@ const initialState: AuthState = {
 function authReducer(state: AuthState, action: AuthAction): AuthState {
   switch (action.type) {
     case "login":
-      return { user: action.payload, isAuthenticated: true };
+      return { ...state, user: action.payload, isAuthenticated: true };
     case "logout":
-      return { user: null, isAuthenticated: false };
+      return { ...state, user: null, isAuthenticated: false };
     default:
       throw new Error("Invalid action");
   }
@@ -74,4 +74,3 @@ export function useAuth() {
   if (!context) throw new Error("useAuth must be used within an AuthProvider");
   return context;
 }
-
